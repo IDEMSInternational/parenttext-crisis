@@ -56,7 +56,8 @@ sources = [
         # "archive": "parenttext_all.zip",
         #"archive": "https://drive.usercontent.google.com/download?id=1V9fQZ9ZrzwRkQWBtlHJ1it0Fe3hdtHs2&export=download&authuser=0&confirm=t&uuid=f9d65ff1-b210-4b61-a030-cd4a231c22ca&at=APZUnTVzz2FLSi1riCmRjCFI5vCx:1696348063599",  # noqa: E501
         "crowdin_name": "module",
-        "tags": [4,"response"],
+        #"tags": [4,"response"],
+        "tags": [1,"safeguarding"],
         #"tags": [1,"onboarding",1, "safeguarding",1,"delivery",4,"response"],
         "split_no": 1
     }
@@ -84,14 +85,19 @@ folder_within_repo = "translations/parent_text_crisis_global"
 # 1 - We may want to remove the quick replies and add them to message text and give
 #     numerical prompts to allow basic phone users to use the app - for this use
 #     reference code "move"
-# 2 - We may want to reformat the quick replies so that long ones are added to the
+# 2 - As above but use additional functionality allowing you to replace phrases,
+#     reference code "move_and_mod"
+# 3 - We may want to reformat the quick replies so that long ones are added to the
 #     message text as above - for this use reference code "reformat"
-# 3 - We may not want to do anything, for this use reference code "none"
-qr_treatment = "reformat"
+# 4 - We may not want to do anything, for this use reference code "none"
+qr_treatment = "move_and_mod"
 
 # This is the default phrase we want to add in if the quick replies are being moved to
 # message text.
 select_phrases = "./edits/select_phrases.json"
+
+# These are phrases that we mant to handle differently as we move qr to message text
+replace_phrases = "./edits/replace_phrases.json"
 
 # If we are in scenario 1 above, we may wish to add some basic numerical quick
 # replies back in, if so we need to specify add_selectors as True
@@ -100,7 +106,7 @@ add_selectors = "yes"
 # Words we always want to keep as full quick replies are specified in this file.
 special_words = "./edits/special_words.json"
 
-# In scenario 2 we set limits on the number of quick replies and the length of the
+# In scenario 3 we set limits on the number of quick replies and the length of the
 # quick replies.
 #   count_threshold (relates to number of quick replies)
 #   length_threshold (relates to length of the longest quick reply)
@@ -149,6 +155,7 @@ def create_config():
         "qr_treatment": qr_treatment,
         "redirect_flow_names": redirect_flow_names,
         "select_phrases": select_phrases,
+        "replace_phrases": replace_phrases,
         #"sg_flow_id": "b83315a6-b25c-413a-9aa0-953bf60f223c",
         #"sg_flow_name": "safeguarding_wfr_interaction",
         "sg_sources": [
